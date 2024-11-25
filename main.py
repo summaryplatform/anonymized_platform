@@ -16,7 +16,7 @@ def page_set():
     st.title("Summarization Dataset Search Platform")
     if 'show_form' not in st.session_state:
         st.session_state.show_form = False
-    st.write("This version is intended for the review process and excludes the option to add a new dataset in order to preserve anonymity.")
+    #st.write("This version is intended for the review process and excludes the option to add a new dataset in order to preserve anonymity.")
 
 
 def set_search(df):
