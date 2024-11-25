@@ -25,9 +25,9 @@ def set_search(df):
     combined_mask = pd.Series([True] * len(df))
 
     #languages
-    df['Languages '] = df['Languages '].apply(lambda x: x.split(', '))
+    df['Languages '] = df['Languages'].apply(lambda x: x.split(', '))
     #df['Languages '] = df['Languages '].apply(literal_eval)
-    unique_languages = set(lang for lang_list in df['Languages '].dropna() for lang in lang_list)
+    unique_languages = set(lang for lang_list in df['Languages'].dropna() for lang in lang_list)
     selected_languages = st.multiselect("Languages", options=sorted(unique_languages))
 
     #language modality
@@ -35,7 +35,7 @@ def set_search(df):
     selected_modality = st.multiselect("Language Modality", options=sorted(unique_modalities))
 
     #Domain
-    unique_domains = set(df['Domain '].dropna().unique())
+    unique_domains = set(df['Domain'].dropna().unique())
     selected_domain= st.multiselect("Domain", options=sorted(unique_domains))
 
 
@@ -57,7 +57,7 @@ def set_search(df):
 
         if selected_languages:
             # This mask checks if the list of selected languages are subset of 'languages' array in each row
-            mask1 = df['Languages '].apply(lambda x: set(selected_languages).issubset(x))
+            mask1 = df['Languages'].apply(lambda x: set(selected_languages).issubset(x))
             combined_mask &= mask1  # Combine with the main mask using logical AND
 
         if selected_modality:
@@ -65,7 +65,7 @@ def set_search(df):
             combined_mask &= mask2
 
         if selected_domain:
-            mask3 = df['Domain '].isin(selected_domain)
+            mask3 = df['Domain'].isin(selected_domain)
             combined_mask &= mask3
 
         if selected_Length:
